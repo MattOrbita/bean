@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b35iw7ux3mf7m"]
+
+[ext_resource type="Texture2D" uid="uid://ciyp6vb53ykcx" path="res://images/temp cannonball.png" id="1_icnfr"]
+[ext_resource type="Script" path="res://scripts/cannonball.gd" id="1_y2xjo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvha7"]
+radius = 387.012
+
+[node name="Cannonball" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_y2xjo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(211, -112)
+texture = ExtResource("1_icnfr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uvha7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
