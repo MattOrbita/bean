@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfsec0tf4t8nj"
-path="res://.godot/imported/temp cannon.webp-519260115c896ee2c7d2f0816758208d.ctex"
+uid="uid://b0h1mujl13l7m"
+path="res://.godot/imported/can of beans w beans.png-866013ca232a9ac90f431ba691002bc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/temp cannon.webp"
-dest_files=["res://.godot/imported/temp cannon.webp-519260115c896ee2c7d2f0816758208d.ctex"]
+source_file="res://images/can of beans w beans.png"
+dest_files=["res://.godot/imported/can of beans w beans.png-866013ca232a9ac90f431ba691002bc8.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciyp6vb53ykcx"
-path="res://.godot/imported/temp cannonball.png-c288dbdbea8f8b1b55cb524cb7252eb8.ctex"
+uid="uid://50i18r5f1oap"
+path="res://.godot/imported/can of beans wo beans.webp-c6b870fc82a3b39d5d00bc0284a864d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/temp cannonball.png"
-dest_files=["res://.godot/imported/temp cannonball.png-c288dbdbea8f8b1b55cb524cb7252eb8.ctex"]
+source_file="res://images/can of beans wo beans.webp"
+dest_files=["res://.godot/imported/can of beans wo beans.webp-c6b870fc82a3b39d5d00bc0284a864d4.ctex"]
 
 [params]
 
