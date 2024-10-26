@@ -7,6 +7,9 @@ var move_speed = 200
 var attack_proximity = 150
 var can_attack : bool = true
 
+@onready var attack_timer : Timer = $AttackTimer
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
+
 @onready var enemy_parent = $"../Enemies"
 
 
@@ -41,9 +44,10 @@ func pursue_target():
 		move_and_slide()
 	elif can_attack:
 		target.take_damage(10)
-		
 		can_attack = false
-		$AttackTimer.start()
+		
+		animation_player.play('attack')
+		attack_timer.start()
 
 
 func _on_timer_timeout() -> void:
