@@ -1,11 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxdq0atmwfdkm"]
 
-[ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="1_pct5a"]
-[ext_resource type="PackedScene" uid="uid://cbnpvpcuutktd" path="res://scenes/feeding_tower.tscn" id="2_cpbc1"]
+[ext_resource type="PackedScene" uid="uid://bfirgugfqjks4" path="res://scenes/enemy.tscn" id="2_61x2i"]
+[ext_resource type="PackedScene" uid="uid://7h8bax1v7b5b" path="res://scenes/minion_tower.tscn" id="3_ojt5h"]
 
 [node name="Sandbox" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_pct5a")]
+[node name="Minion Tower" parent="." instance=ExtResource("3_ojt5h")]
+position = Vector2(602, 347)
 
-[node name="Feeding Tower" parent="." instance=ExtResource("2_cpbc1")]
-position = Vector2(233, 164)
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("2_61x2i")]
+position = Vector2(247, 331)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("2_61x2i")]
+position = Vector2(1016, 340)

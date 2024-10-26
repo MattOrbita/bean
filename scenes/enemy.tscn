@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfirgugfqjks4"]
+
+[ext_resource type="Texture2D" uid="uid://d8my8ehkyb84" path="res://images/enemy dog.jpg" id="1_5xgj4"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_37fli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcpp2"]
+size = Vector2(136, 136)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_37fli")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_5xgj4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dcpp2")

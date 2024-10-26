@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://7h8bax1v7b5b"]
+[gd_scene load_steps=4 format=3 uid="uid://7h8bax1v7b5b"]
 
 [ext_resource type="Texture2D" uid="uid://b6lygxajwr8tl" path="res://images/angry bean.jpg.webp" id="1_cushr"]
+[ext_resource type="Script" path="res://scripts/minion_tower.gd" id="1_t5r4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yo4lr"]
-size = Vector2(804, 746)
+size = Vector2(88, 86)
 
 [node name="Minion Tower" type="CharacterBody2D"]
+script = ExtResource("1_t5r4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_cushr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yo4lr")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
