@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 var target : Node2D
 
+var health = 10
+var size
+
 var move_speed = 200
 var attack_proximity = 150
 var can_attack : bool = true
