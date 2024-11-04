@@ -11,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("Sprite/Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +27,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("Sprite/Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -44,9 +44,12 @@ _data = {
 }
 
 [node name="Minion Tower" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("1_t5r4i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_cushr")
 
@@ -62,4 +65,5 @@ libraries = {
 "": SubResource("AnimationLibrary_sr8kq")
 }
 
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
