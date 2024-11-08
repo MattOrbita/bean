@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxdq0atmwfdkm"]
+[gd_scene load_steps=4 format=3 uid="uid://cxdq0atmwfdkm"]
 
+[ext_resource type="PackedScene" uid="uid://bfirgugfqjks4" path="res://scenes/enemy.tscn" id="1_o4bcn"]
 [ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="2_40q2x"]
-[ext_resource type="PackedScene" uid="uid://c3dd1dymgsr46" path="res://scenes/aoe_tower.tscn" id="2_jk4kj"]
+[ext_resource type="PackedScene" uid="uid://ck2kkmqetqqfl" path="res://scenes/slowing_tower.tscn" id="2_a0o3d"]
 
 [node name="Sandbox" type="Node2D"]
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("2_40q2x")]
-position = Vector2(402, 249)
+[node name="Enemy" parent="Enemies" instance=ExtResource("1_o4bcn")]
+position = Vector2(-146, 0)
 
-[node name="AoE Tower" parent="." instance=ExtResource("2_jk4kj")]
+[node name="Slowing Tower" parent="." instance=ExtResource("2_a0o3d")]
+position = Vector2(465, 230)
+
+[node name="Player" parent="." instance=ExtResource("2_40q2x")]
