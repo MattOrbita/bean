@@ -1,17 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxdq0atmwfdkm"]
 
 [ext_resource type="PackedScene" uid="uid://bfirgugfqjks4" path="res://scenes/enemy.tscn" id="1_o4bcn"]
-[ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="2_40q2x"]
-[ext_resource type="PackedScene" uid="uid://ck2kkmqetqqfl" path="res://scenes/slowing_tower.tscn" id="2_a0o3d"]
+[ext_resource type="PackedScene" uid="uid://btm8onloqo8bs" path="res://scenes/missile.tscn" id="3_ma3nb"]
+[ext_resource type="PackedScene" uid="uid://pjf87nduau4k" path="res://scenes/air_control_tower.tscn" id="3_ou8ob"]
 
 [node name="Sandbox" type="Node2D"]
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("1_o4bcn")]
-position = Vector2(-146, 0)
+position = Vector2(107, 94)
 
-[node name="Slowing Tower" parent="." instance=ExtResource("2_a0o3d")]
-position = Vector2(465, 230)
+[node name="Missiles" type="Node" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("2_40q2x")]
+[node name="Missile" parent="Missiles" instance=ExtResource("3_ma3nb")]
+
+[node name="Air Control Tower" parent="." instance=ExtResource("3_ou8ob")]
+position = Vector2(578, 363)

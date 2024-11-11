@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://pjf87nduau4k"]
+
+[ext_resource type="Texture2D" uid="uid://cf0y2u0oqkrc0" path="res://images/Turret.png" id="1_1v7ep"]
+[ext_resource type="Script" path="res://scripts/air_control_tower.gd" id="1_2bjoe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1jv"]
+size = Vector2(322, 258)
+
+[node name="Air Control Tower" type="StaticBody2D"]
+script = ExtResource("1_2bjoe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_1v7ep")
+region_enabled = true
+region_rect = Rect2(176.214, 0, 640.983, 510)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mw1jv")
+
+[node name="Shoot Delay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Shoot Delay" to="." method="_on_shoot_delay_timeout"]
