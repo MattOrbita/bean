@@ -3,11 +3,14 @@ extends StaticBody2D
 
 var target : Node2D
 var can_shoot = true
+var can_feed = true
 
 var shoot_delay_step = 0.5
 var max_shoot_delay = 5
 var min_shoot_delay = 1
+
 @onready var shoot_timer = $"Shoot Delay"
+@onready var animation_player = $AnimationPlayer
 
 var missile_prefab = preload("res://scenes/missile.tscn")
 
@@ -71,6 +74,23 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		feed_minion()
 
 func feed_minion():
+	# if fed the maximum amount, then don't allow further feeding
+	if shoot_timer.wait_time == min_shoot_delay:
+		return
+	
+	# if feeding animation is still playing, also don't allow feeding just yet
+	if !can_feed:
+		return
+	
+	# play feeding animation
+	animation_player.play("feed")
+	can_feed = false
+	
+	# decrease the shoot delay, ensuring it doesn't dip below the minimum required delay
 	shoot_timer.wait_time -= shoot_delay_step
 	if shoot_timer.wait_time < min_shoot_delay:
 		shoot_timer.wait_time = min_shoot_delay
+
+
+func allow_feeding():
+	can_feed = true
