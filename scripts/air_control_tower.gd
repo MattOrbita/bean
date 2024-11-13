@@ -4,16 +4,21 @@ extends StaticBody2D
 var target : Node2D
 var can_shoot = true
 
+var shoot_delay_step = 0.5
+var max_shoot_delay = 5
+var min_shoot_delay = 1
 @onready var shoot_timer = $"Shoot Delay"
+
 var missile_prefab = preload("res://scenes/missile.tscn")
 
 # TODO figure out how to properly initialize vars below
 @onready var enemy_parent = $"../Enemies"
 @onready var missile_parent = $"../Missiles"
+@onready var player = $"../Player"
 
 
 func _ready() -> void:
-	pass
+	shoot_timer.wait_time = max_shoot_delay
 
 
 func _process(delta: float) -> void:
@@ -40,7 +45,8 @@ func target_nearest_enemy(): # TODO calling this every frame could prove overly 
 
 
 func face_target():
-	look_at(target.position)
+	if target != null:
+		look_at(target.position)
 
 
 func shoot_target():
@@ -58,3 +64,13 @@ func shoot_target():
 
 func _on_shoot_delay_timeout() -> void:
 	can_shoot = true
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed('action') and player.get_pointing_to() == self:
+		feed_minion()
+
+func feed_minion():
+	shoot_timer.wait_time -= shoot_delay_step
+	if shoot_timer.wait_time < min_shoot_delay:
+		shoot_timer.wait_time = min_shoot_delay

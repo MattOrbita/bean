@@ -19,3 +19,5 @@ region_rect = Rect2(300.73, 0, 241.69, 859)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_40wac")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
