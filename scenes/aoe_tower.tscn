@@ -11,7 +11,7 @@ radius = 81.0555
 radius = 233.002
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_au41i"]
-radius = 404.061
+radius = 404.06
 
 [sub_resource type="Animation" id="Animation_7rnbp"]
 length = 0.001
@@ -51,6 +51,8 @@ _data = {
 }
 
 [node name="AoE Tower" type="CharacterBody2D"]
+collision_layer = 8
+input_pickable = true
 script = ExtResource("1_5ff8t")
 
 [node name="Bomb" type="Sprite2D" parent="."]
@@ -83,6 +85,7 @@ libraries = {
 "": SubResource("AnimationLibrary_p61yq")
 }
 
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="body_entered" from="Enemy Detector" to="." method="_on_enemy_detector_body_entered"]
 [connection signal="body_entered" from="Enemy Damager" to="." method="_on_enemy_damager_body_entered"]
 [connection signal="body_exited" from="Enemy Damager" to="." method="_on_enemy_damager_body_exited"]

@@ -10,6 +10,7 @@
 size = Vector2(466, 406)
 
 [node name="Feeding Tower" type="StaticBody2D"]
+collision_layer = 8
 script = ExtResource("1_1v8qr")
 
 [node name="Sprite W Food" type="Sprite2D" parent="."]

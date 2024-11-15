@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var health = 100
+var health = 50 #100
 var move_speed # TODO delete
 
 var min_speed = 250

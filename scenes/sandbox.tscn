@@ -2,21 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://bfirgugfqjks4" path="res://scenes/enemy.tscn" id="1_o4bcn"]
 [ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="3_a25lw"]
-[ext_resource type="PackedScene" uid="uid://pjf87nduau4k" path="res://scenes/air_control_tower.tscn" id="3_ou8ob"]
+[ext_resource type="PackedScene" uid="uid://c3dd1dymgsr46" path="res://scenes/aoe_tower.tscn" id="3_fj5b4"]
 
 [node name="Sandbox" type="Node2D"]
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("1_o4bcn")]
-position = Vector2(1191, 91)
+position = Vector2(41, 372)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("1_o4bcn")]
-position = Vector2(1191, 303)
+position = Vector2(274, 372)
 
 [node name="Missiles" type="Node" parent="."]
 
-[node name="Air Control Tower" parent="." instance=ExtResource("3_ou8ob")]
-position = Vector2(578, 363)
+[node name="AoE Tower" parent="." instance=ExtResource("3_fj5b4")]
+position = Vector2(579, 388)
 
 [node name="Player" parent="." instance=ExtResource("3_a25lw")]
+position = Vector2(582, 552)

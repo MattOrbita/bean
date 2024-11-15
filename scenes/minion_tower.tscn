@@ -44,6 +44,7 @@ _data = {
 }
 
 [node name="Minion Tower" type="CharacterBody2D"]
+collision_layer = 8
 input_pickable = true
 script = ExtResource("1_t5r4i")
 

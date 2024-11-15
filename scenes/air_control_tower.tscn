@@ -58,6 +58,7 @@ _data = {
 }
 
 [node name="Air Control Tower" type="StaticBody2D"]
+collision_layer = 8
 input_pickable = true
 script = ExtResource("1_2bjoe")
 
