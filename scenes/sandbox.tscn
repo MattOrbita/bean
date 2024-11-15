@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://rf5h5g0exw4c"]
-
-[ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="1_pct5a"]
-
-[node name="Sandbox" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_pct5a")]

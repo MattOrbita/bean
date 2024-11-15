@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjxhuscgjdgt6"]
+
+[ext_resource type="Script" path="res://enermy/enermy.gd" id="1_5fe60"]
+[ext_resource type="Texture2D" uid="uid://d18560530jjpf" path="res://icon.svg" id="1_xe7b1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7o6t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ggh8x"]
+radius = 10.4957
+
+[node name="enermy" type="CharacterBody2D"]
+input_pickable = true
+script = ExtResource("1_5fe60")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.681016, 0.135576, 0.172874, 1)
+position = Vector2(0, 30.5)
+scale = Vector2(0.296875, 0.773438)
+texture = ExtResource("1_xe7b1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 59)
+scale = Vector2(2.92, 2.32)
+shape = SubResource("CircleShape2D_q7o6t")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.680005, 1.04)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 28)
+scale = Vector2(6.30584, 5.03847)
+shape = SubResource("CircleShape2D_ggh8x")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
