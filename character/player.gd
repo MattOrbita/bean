@@ -8,67 +8,90 @@ var destination : Vector2
 var movement : Vector2
 var moving = false
 var stop = false
+var attack = false
 
 var current_target : Node2D
 
-
-func set_target(node : Node2D):
-	current_target = node
+func set_attack(value):
+	if value:
+		attack = true
 	
-	#if current_target != null:
-		#current_target.position
-
-
+	else:
+		attack = false
+		
+func set_zone(value):
+	if value:
+		stop = true
+	else:
+		stop = false
+	
+	
+		
+	
+#func set_target(node : Node2D):
+	#current_target = node
+	#
+	##if current_target != null:
+		##current_target.position
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("click"):
-		if current_target != null:
-			destination = current_target.position
-		else:
-			destination = get_global_mouse_position()
+		stop = false
 		moving = true
-		current_target = null
+		destination = get_global_mouse_position()
+	
 		
 func _physics_process(_delta: float) -> void:
 	direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	
 	if direction:
 		moving = false
-		
 		direction.normalized()
 		velocity = direction * speed
 		set_walking(true)
 		update_blend_position()
 		move_and_slide()
+	elif moving == true and position.distance_to(destination) > 10:
+		movement = position.direction_to(destination)
+		movement.normalized()
+		direction = movement * speed
+		velocity = movement * speed
+		set_walking(true)
+		update_blend_position()
+		move_and_slide()
 	else:
-		set_walking(false)
-		if moving == true and position.distance_to(destination) > 10:
-			movement = position.direction_to(destination)
-			direction = movement * speed
-			velocity = movement * speed
-			set_walking(true)
-			update_blend_position()
-			move_and_slide()
-			
-		else:
-			
-			set_walking(false)
-			moving = false
+		moving = false
+		if attack and stop:
 		
+			get_attack(attack)
+		else:
+			set_walking(false)
+			set_idle(true)
+			
+		
+
+	
+
 
 func _process(_delta: float) -> void:
 	pass
 func set_walking(value):
 	animation_tree["parameters/conditions/Walk"] = value
 	animation_tree["parameters/conditions/Idle"] = not value
+	animation_tree["parameters/conditions/Attack"] = not value
 
+func set_idle(value):
+	animation_tree["parameters/conditions/Walk"] = not value
+	animation_tree["parameters/conditions/Idle"] = value
+	animation_tree["parameters/conditions/Attack"] = not value
+	
+func get_attack(value):
+	animation_tree["parameters/conditions/Walk"] = not value
+	animation_tree["parameters/conditions/Idle"] = not value
+	animation_tree["parameters/conditions/Attack"] = value
+	
 func update_blend_position():
 	animation_tree["parameters/Idle/blend_position"] = direction.normalized()
 	animation_tree["parameters/Walk/blend_position"] = direction.normalized() 
+	animation_tree["parameters/Attack/blend_position"] = direction.normalized() 
 	
-
-
-#
-#
-#func _on_area_2d_body_exited(body: Node2D) -> void:
-	#if body.name == "enermy":
-		#stop = false
