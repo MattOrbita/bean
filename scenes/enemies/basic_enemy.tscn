@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://qqhayw1qd1bh"]
+
+[ext_resource type="Texture2D" uid="uid://d8my8ehkyb84" path="res://images/enemy dog.jpg" id="1_12my4"]
+[ext_resource type="Script" path="res://scenes/enemies/basic_enemy.gd" id="1_exiac"]
+[ext_resource type="Script" path="res://scenes/enemies/navigation_agent_2d.gd" id="3_3hwc0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_maxir"]
+radius = 65.0308
+
+[node name="basic_enemy" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_exiac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_12my4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_maxir")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 3
+debug_enabled = true
+script = ExtResource("3_3hwc0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
