@@ -12,7 +12,7 @@ var min_shoot_delay = 1
 @onready var shoot_timer = $"Shoot Delay"
 @onready var animation_player = $AnimationPlayer
 
-var missile_prefab = preload("res://scenes/missile.tscn")
+var missile_prefab = preload("res://scenes/towers/missile.tscn")
 
 # TODO figure out how to properly initialize vars below
 @onready var enemy_parent = $"../Enemies"

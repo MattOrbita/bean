@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ck2kkmqetqqfl"]
 
-[ext_resource type="Script" path="res://scripts/slowing_tower.gd" id="1_5ogih"]
+[ext_resource type="Script" path="res://scripts/tower_scripts/unused_tower_scripts/slowing_tower.gd" id="1_5ogih"]
 [ext_resource type="Texture2D" uid="uid://bwws8inua2vog" path="res://images/Mud puddle.jpg.webp" id="1_vokuw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is1qv"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c3dd1dymgsr46"]
 
-[ext_resource type="Script" path="res://scripts/aoe_tower.gd" id="1_5ff8t"]
+[ext_resource type="Script" path="res://scripts/tower_scripts/unused_tower_scripts/aoe_tower.gd" id="1_5ff8t"]
 [ext_resource type="Texture2D" uid="uid://ddcrscll0ekf7" path="res://images/cartoon bomb.webp" id="1_7tat1"]
 [ext_resource type="Texture2D" uid="uid://c4drwbi2kknsr" path="res://images/orange circle.png" id="3_bjr4f"]
 
