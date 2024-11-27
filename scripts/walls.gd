@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 var new_tile_id = Vector2i(17, 11)
+const WALL_SCENE = preload("res://scenes/wall.tscn")
 
 
 
@@ -18,10 +19,8 @@ func _process(_delta):
 	var clicked_tile = get_cell_atlas_coords(tile_pos)
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if clicked_tile != new_tile_id:  # Ensure a tile was actually clicked
-			set_cell(tile_pos, 0, new_tile_id, 0)
-			print("clicked!")
-			print(tile_pos)
+		place_wall(clicked_tile, tile_pos)
+		
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		if clicked_tile == new_tile_id:  # Ensure a tile was actually clicked
 			set_cell(tile_pos, -1, new_tile_id, -1)
@@ -31,6 +30,8 @@ func _process(_delta):
 	
 	 # Change this to the ID of the new tile type you want to set
 
-func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		pass
+func place_wall(clicked_tile, tile_pos):
+	if clicked_tile != new_tile_id:  # Ensure a tile was actually clicked
+			set_cell(tile_pos, 0, new_tile_id, 0)
+			print("clicked!")
+			print(tile_pos)
