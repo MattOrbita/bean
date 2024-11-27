@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://btm8onloqo8bs"]
+
+[ext_resource type="Texture2D" uid="uid://d0cfsf3nyg4vq" path="res://images/Missile.png" id="1_2yao8"]
+[ext_resource type="Script" path="res://scripts/missile.gd" id="1_rmwso"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40wac"]
+size = Vector2(174, 48)
+
+[node name="Missile" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_rmwso")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_2yao8")
+region_enabled = true
+region_rect = Rect2(300.73, 0, 241.69, 859)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_40wac")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
