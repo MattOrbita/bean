@@ -5,6 +5,10 @@ const WALL_SCENE = preload("res://scenes/wall.tscn")
 const BIGGER_WALL_SCENE = preload("res://scenes/tower_placeholder.tscn")
 var existing_walls = {} #kind of a crazy method here. I'll use dictionaries to keep track of placed tiles
 var existing_towers = {}
+var resources:int = 0
+const wall_cost:int = 10
+const big_wall_cost:int = 100
+signal resources_changed(resources)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -44,34 +48,37 @@ func _process(_delta):
 	for tower in existing_towers:
 		if existing_towers[tower] == null or (str(existing_towers[tower]) == "<Freed Object>"):
 			existing_towers.erase(tower)
-			delete_wall(get_cell_atlas_coords(tower), tower)
+			delete_big_wall(tower)
 	#pass
 
 
 
 func place_wall(clicked_tile, tile_pos):
-	if clicked_tile != new_tile_id:  # Ensure a tile was actually clicked
-			set_cell(tile_pos, 0, new_tile_id, 0)
-			print("clicked!")
-			print(tile_pos)
-			var wall := WALL_SCENE.instantiate() as Wall
-			wall.position.x = to_global(map_to_local(tile_pos)).x
-			wall.position.y = to_global(map_to_local(tile_pos)).y
-			wall.set_as_top_level(true)
-			add_child(wall)
-			existing_walls[tile_pos] = wall
+	if clicked_tile != new_tile_id and resources >= wall_cost:  # Ensure a tile was actually clicked
+		set_resources(resources - wall_cost)
+		set_cell(tile_pos, 0, new_tile_id, 0)
+		print("clicked!")
+		print(tile_pos)
+		var wall := WALL_SCENE.instantiate() as Wall
+		wall.position.x = to_global(map_to_local(tile_pos)).x
+		wall.position.y = to_global(map_to_local(tile_pos)).y
+		wall.set_as_top_level(true)
+		add_child(wall)
+		existing_walls[tile_pos] = wall
 
 
 func delete_wall(clicked_tile, tile_pos):
 	if clicked_tile == new_tile_id:  # Ensure a tile was actually clicked
-			set_cell(tile_pos, -1, new_tile_id, -1)
-			print("clicked!")
-			print(tile_pos)
-			if tile_pos in existing_walls:
-				var wall = existing_walls[tile_pos]
-				if wall is Wall:  # Check if the node is a Wall instance
-					wall.destroyed()
-					existing_walls.erase(tile_pos)
+		set_cell(tile_pos, -1, new_tile_id, -1)
+		print("clicked!")
+		print(tile_pos)
+		if tile_pos in existing_walls:
+			var wall = existing_walls[tile_pos]
+			if wall is Wall:  # Check if the node is a Wall instance
+				set_resources(resources + (wall_cost * wall.remaining_hp_proportion()))
+				#refill the resources by amt spent proportional to remaining hp
+				wall.destroyed()
+				existing_walls.erase(tile_pos)
 
 
 func place_walls_grid(tile_pos, n):
@@ -98,7 +105,8 @@ func place_big_wall(tile_pos):
 				is_valid_placement = false
 				break
 
-	if is_valid_placement:
+	if is_valid_placement and resources >= big_wall_cost:
+		set_resources(resources - big_wall_cost)
 		for x in range(2):
 			for y in range(2):
 				var cell_pos = Vector2i(tile_pos.x + x, tile_pos.y + y)
@@ -109,7 +117,8 @@ func place_big_wall(tile_pos):
 		bwall.set_as_top_level(true)
 		add_child(bwall)
 		existing_towers[tile_pos] = bwall
-		
+
+
 func delete_big_wall(tile_pos):
 	# Iterate over all possible positions of the 2x2 wall
 	for x in range(2):
@@ -118,6 +127,7 @@ func delete_big_wall(tile_pos):
 			if cell_pos in existing_towers:
 				var bwall = existing_towers[cell_pos]
 				if bwall is BiggerWall:
+					set_resources(resources + int(big_wall_cost * bwall.remaining_hp_proportion()))
 					# Remove the BiggerWall instance
 					bwall.destroyed()
 					# Remove the wall tiles from the tilemap
@@ -127,3 +137,11 @@ func delete_big_wall(tile_pos):
 							set_cell(pos, -1, new_tile_id, -1)
 					# Remove the entry from the dictionary
 					existing_towers.erase(cell_pos)
+
+
+func set_resources(amount):
+	resources = amount
+	resources_changed.emit(resources)
+	
+func resources_left():
+	return resources

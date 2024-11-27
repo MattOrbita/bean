@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 func _on_timer_timeout():
 	direction = random_direction()
 	for wall in touching_walls:
-		if (wall is Wall) and wall != null:
+		if wall is Wall and wall != null:
 			wall.hit()
 
 

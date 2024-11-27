@@ -28,3 +28,6 @@ func destroyed():
 func hit():
 	hp -= 10
 	
+func remaining_hp_proportion():
+	return float(hp)/100.0
+	
