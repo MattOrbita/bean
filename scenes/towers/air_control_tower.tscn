@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/tower_scripts/air_control_tower.gd" id="1_2bjoe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1jv"]
-size = Vector2(322, 258)
+size = Vector2(32, 32)
 
 [sub_resource type="Animation" id="Animation_iosja"]
 length = 0.001
@@ -58,7 +58,7 @@ _data = {
 }
 
 [node name="Air Control Tower" type="StaticBody2D"]
-collision_layer = 8
+scale = Vector2(0.333, 0.333)
 input_pickable = true
 script = ExtResource("1_2bjoe")
 
@@ -67,7 +67,7 @@ rotation = 3.14159
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_1v7ep")
 region_enabled = true
-region_rect = Rect2(176.214, 0, 640.983, 510)
+region_rect = Rect2(176.214, -67.54, 640, 640)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mw1jv")

@@ -1,4 +1,5 @@
-extends StaticBody2D
+#extends StaticBody2D
+class_name BiggerWall extends Wall
 
 
 var target : Node2D
@@ -10,15 +11,21 @@ var max_shoot_delay = 5
 var min_shoot_delay = 1
 
 @onready var shoot_timer = $"Shoot Delay"
-@onready var animation_player = $AnimationPlayer
+#@onready var animation_player = $AnimationPlayer
 
 var missile_prefab = preload("res://scenes/towers/missile.tscn")
 
-@onready var game_manager = $"../Game Manager"
+var game_manager
 
 
 func _ready() -> void:
+	get_game_manager()
 	shoot_timer.wait_time = max_shoot_delay
+
+
+func get_game_manager():
+	var level_node = $"/root".get_child(0)
+	game_manager = level_node.get_node("Game Manager")
 
 
 func _process(delta: float) -> void:

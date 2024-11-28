@@ -10,13 +10,20 @@ var cooldown_timer = 0
 @onready var sprite_with_food = $"Sprite W Food"
 @onready var sprite_without_food = $"Sprite No Food"
 
-@onready var game_manager = $"../Game Manager"
+var game_manager
 var player : Node2D = null
 
 
 func _ready():
+	get_game_manager()
+	
 	sprite_with_food.visible = false
 	sprite_without_food.visible = true
+
+
+func get_game_manager():
+	var level_node = $"/root".get_child(0)
+	game_manager = level_node.get_node("Game Manager")
 
 
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvtoktk5uuky2"]
+[gd_scene load_steps=8 format=3 uid="uid://8en3pgbudgkx"]
 
 [ext_resource type="Script" path="res://scripts/tower_placeholder.gd" id="1_4navn"]
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/sheet.png" id="2_yj1tx"]
