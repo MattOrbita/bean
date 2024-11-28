@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://dtwpo1i4et0sj"]
+[gd_scene load_steps=7 format=4 uid="uid://dtwpo1i4et0sj"]
 
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/sheet.png" id="1_nwhhx"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_pct5a"]
-[ext_resource type="PackedScene" uid="uid://pjf87nduau4k" path="res://scenes/towers/air_control_tower.tscn" id="2_xh3od"]
 [ext_resource type="Script" path="res://scripts/walls.gd" id="3_ir8lb"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
 
@@ -290,10 +289,6 @@ sources/0 = SubResource("TileSetAtlasSource_w3cgr")
 
 [node name="Player" parent="." instance=ExtResource("1_pct5a")]
 z_index = 1
-
-[node name="Air Control Tower" parent="." instance=ExtResource("2_xh3od")]
-z_index = 1
-position = Vector2(-1081, -112)
 
 [node name="Tiles" type="Node" parent="."]
 

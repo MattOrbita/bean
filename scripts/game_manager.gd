@@ -1,22 +1,47 @@
 extends Node
 
 
+var player
 var enemies = []
+
+var player_script : Script = preload("res://scripts/player.gd")
 var enemy_script : Script = preload("res://scripts/enemy.gd")
 
 
 func _ready() -> void:
 	var root_node = get_tree().root
-	enemies = find_nodes_with_script(root_node, enemy_script)
+	find_important_nodes(root_node)
 
 
-func find_nodes_with_script(root_node : Node, script : Script):
-	var nodes_with_script = []
+func _process(delta: float) -> void:
+	update_enemy_list()
+
+
+func find_important_nodes(root_node : Node):
+	var script = root_node.get_script()
 	
-	if root_node.get_script() == script:
-		nodes_with_script.append(root_node)
+	if script == enemy_script:
+		enemies.append(root_node)
+	elif script == player_script:
+		player = root_node
 	
 	for child in root_node.get_children():
-		nodes_with_script.append_array(find_nodes_with_script(child, script))
+		find_important_nodes(child)
+
+
+func update_enemy_list():
+	var index_to_remove
+	var is_updated = false
 	
-	return nodes_with_script
+	while not is_updated:
+		is_updated = true
+		
+		for i in range(len(enemies)):
+			if enemies[i] == null:
+				index_to_remove = i
+				is_updated = false
+				
+				break
+		
+		if not is_updated:
+			enemies.remove_at(index_to_remove)

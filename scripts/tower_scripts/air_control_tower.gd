@@ -14,10 +14,6 @@ var min_shoot_delay = 1
 
 var missile_prefab = preload("res://scenes/towers/missile.tscn")
 
-# TODO figure out how to properly initialize vars below
-@onready var missile_parent = $"../Missiles"
-@onready var player = $"../Player"
-
 @onready var game_manager = $"../Game Manager"
 
 
@@ -34,18 +30,20 @@ func _process(delta: float) -> void:
 func target_nearest_enemy(): # TODO calling this every frame could prove overly performance intensive
 	var enemies = game_manager.enemies
 	
-	if len(enemies) > 0:
-		var new_target = enemies[0]
-		var nearest_distance = (position - new_target.position).length()
+	var new_target = null
+	var nearest_distance = float(INF)
+	
+	for enemy in enemies:
+		if enemy == null:
+			return
 		
-		for i in range(1, len(enemies)):
-			var distance = (position - enemies[i].position).length()
-			
-			if distance < nearest_distance:
-				nearest_distance = distance
-				new_target = enemies[i]
+		var distance = (position - enemy.position).length()
 		
-		target = new_target
+		if distance < nearest_distance:
+			nearest_distance = distance
+			new_target = enemy
+	
+	target = new_target
 
 
 func face_target():
@@ -58,7 +56,7 @@ func shoot_target():
 		can_shoot = false
 		
 		var missile : Node2D = missile_prefab.instantiate()
-		missile_parent.add_child(missile)
+		get_tree().root.add_child(missile)
 		
 		missile.global_position = global_position
 		missile.target = target
@@ -71,10 +69,10 @@ func _on_shoot_delay_timeout() -> void:
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed('action') and player.get_pointing_to() == self:
-		feed_minion()
+	if event.is_action_pressed('click'):
+		feed_tower()
 
-func feed_minion():
+func feed_tower():
 	# if fed the maximum amount, then don't allow further feeding
 	if shoot_timer.wait_time == min_shoot_delay:
 		return

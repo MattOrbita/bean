@@ -2,13 +2,16 @@ extends StaticBody2D
 
 var food_restored_per_cycle = 50
 var current_food_amount = 0
-var restore_food_continuously = true
+var restore_food_continuously = false
 
 var cooldown = 5
 var cooldown_timer = 0
 
 @onready var sprite_with_food = $"Sprite W Food"
 @onready var sprite_without_food = $"Sprite No Food"
+
+@onready var game_manager = $"../Game Manager"
+var player : Node2D = null
 
 
 func _ready():
@@ -17,7 +20,16 @@ func _ready():
 
 
 func _process(delta: float) -> void:
+	find_player()
 	perform_countdown(delta)
+
+
+func find_player():
+	if player != null:
+		return
+	
+	if game_manager.player != null:
+		player = game_manager.player
 
 
 func perform_countdown(delta):
@@ -38,6 +50,9 @@ func perform_countdown(delta):
 
 
 func _on_pick_up_trigger_body_entered(body:Node2D) -> void:
+	if player == null or body != player:
+		return
+	
 	print("Replenished " + str(current_food_amount) + " food") # TODO DELETE
 
 	current_food_amount = 0
