@@ -15,9 +15,10 @@ var min_shoot_delay = 1
 var missile_prefab = preload("res://scenes/towers/missile.tscn")
 
 # TODO figure out how to properly initialize vars below
-@onready var enemy_parent = $"../Enemies"
 @onready var missile_parent = $"../Missiles"
 @onready var player = $"../Player"
+
+@onready var game_manager = $"../Game Manager"
 
 
 func _ready() -> void:
@@ -31,9 +32,9 @@ func _process(delta: float) -> void:
 
 
 func target_nearest_enemy(): # TODO calling this every frame could prove overly performance intensive
-	if enemy_parent.get_child_count() > 0:
-		var enemies = enemy_parent.get_children()
-		
+	var enemies = game_manager.enemies
+	
+	if len(enemies) > 0:
 		var new_target = enemies[0]
 		var nearest_distance = (position - new_target.position).length()
 		
