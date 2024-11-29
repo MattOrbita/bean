@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/tower_scripts/air_control_tower.gd" id="1_2bjoe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1jv"]
-size = Vector2(32, 32)
+size = Vector2(318.318, 318.318)
 
 [sub_resource type="Animation" id="Animation_iosja"]
 length = 0.001

@@ -10,6 +10,7 @@ var shoot_delay_step = 0.5
 var max_shoot_delay = 5
 var min_shoot_delay = 1
 
+@onready var sprite = $"Sprite2D"
 @onready var shoot_timer = $"Shoot Delay"
 #@onready var animation_player = $AnimationPlayer
 
@@ -55,7 +56,7 @@ func target_nearest_enemy(): # TODO calling this every frame could prove overly 
 
 func face_target():
 	if target != null:
-		look_at(target.position)
+		sprite.look_at(target.position)
 
 
 func shoot_target():

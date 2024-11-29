@@ -28,3 +28,10 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	touching_walls.erase(body)
+
+
+func take_damage(damage):
+	pass
+	#health -= damage
+	#if health <= 0:
+		#queue_free()

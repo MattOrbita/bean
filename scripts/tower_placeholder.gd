@@ -1,4 +1,4 @@
-class_name BiggerWall extends Wall
+#class_name BiggerWall extends Wall
 
 
 # Called when the node enters the scene tree for the first time.

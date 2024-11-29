@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=4 uid="uid://dtwpo1i4et0sj"]
 
-[ext_resource type="PackedScene" path="res://scenes/enemy_placeholder.tscn" id="1_m6vuy"]
+[ext_resource type="PackedScene" uid="uid://bnx0n8o1j070u" path="res://scenes/enemy_placeholder.tscn" id="1_m6vuy"]
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_pct5a"]
+[ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="1_pct5a"]
 [ext_resource type="Script" path="res://scripts/towermap.gd" id="3_abshe"]
 [ext_resource type="PackedScene" path="res://scenes/game_manager.tscn" id="5_lagr5"]
 

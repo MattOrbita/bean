@@ -5,7 +5,8 @@ var player
 var enemies = []
 
 var player_script : Script = preload("res://scripts/player.gd")
-var enemy_script : Script = preload("res://scripts/enemy.gd")
+#var enemy_script : Script = preload("res://scripts/enemy.gd")
+var enemy_script : Script = preload("res://scenes/enemy_placeholder.gd")
 
 
 func _ready() -> void:
