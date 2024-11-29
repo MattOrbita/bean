@@ -1,5 +1,4 @@
-#extends StaticBody2D
-class_name BiggerWall extends Wall
+extends BiggerWall
 
 
 var target : Node2D

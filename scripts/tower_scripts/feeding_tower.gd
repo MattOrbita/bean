@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends BiggerWall
 
 var food_restored_per_cycle = 50
 var current_food_amount = 0

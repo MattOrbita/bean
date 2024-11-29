@@ -3,7 +3,7 @@ extends TileMapLayer
 var new_tile_id = Vector2i(6, 11)
 const WALL_SCENE = preload("res://scenes/wall.tscn")
 #const BIGGER_WALL_SCENE = preload("res://scenes/tower_placeholder.tscn")
-const BIGGER_WALL_SCENE = preload("res://scenes/towers/air_control_tower.tscn")
+const BIGGER_WALL_SCENE = preload("res://scenes/towers/feeding_tower.tscn")
 var existing_walls = {} #kind of a crazy method here. I'll use dictionaries to keep track of placed tiles
 var existing_towers = {}
 var resources:int = 0
