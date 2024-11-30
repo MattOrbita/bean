@@ -10,6 +10,8 @@ size = Vector2(130, 130)
 font_size = 32
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_vtctv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,6 +27,7 @@ offset_left = -53.0
 offset_top = -106.0
 offset_right = 50.0
 offset_bottom = -83.0
+
 text = "1000"
 label_settings = SubResource("LabelSettings_yv56d")
 horizontal_alignment = 1
