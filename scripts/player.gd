@@ -1,11 +1,17 @@
 extends CharacterBody2D
 
+var targets = []
+var attack_cooldown = true
+var player_alive = true
 var move_speed = 500
 var hp:int = 1000
 @onready var label = $Label
 @onready var regen_timer = $RegenTimer #Stuff like this are temporary features to show and test how things work
 signal health_changed(new_health) #we're getting fancy with godot features up in here. fun learning experience
 
+#shows enemies that this is a player
+func player():
+	pass
 
 func _process(delta: float) -> void:
 	$Label.text = str(hp)
@@ -31,3 +37,23 @@ func resources():
 func _on_regen_timer_timeout():
 	hp += 100
 	health_changed.emit(hp)
+	
+func attack():
+	attack_cooldown = false
+	$AttackCooldown.start()
+	
+func take_damage(damage):
+	hp -= damage
+	#print(hp)
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		targets.append(body)
+
+
+func _on_attack_area_body_exited(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		targets.erase(body)
+
+func _on_attack_cooldown_timeout() -> void:
+	attack_cooldown = true
