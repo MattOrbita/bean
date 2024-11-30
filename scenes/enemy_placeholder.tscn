@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnx0n8o1j070u"]
+
+[ext_resource type="Script" path="res://scenes/enemy_placeholder.gd" id="1_flyei"]
+[ext_resource type="Texture2D" uid="uid://d18560530jjpf" path="res://icon.svg" id="1_iofup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjgae"]
+size = Vector2(64, 64)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_flyei")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_iofup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mjgae")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.25, 1.25)
+shape = SubResource("RectangleShape2D_mjgae")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
