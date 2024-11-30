@@ -3,7 +3,7 @@ extends TileMapLayer
 var new_tile_id = Vector2i(6, 11)
 const WALL_SCENE = preload("res://scenes/wall.tscn")
 #const BIGGER_WALL_SCENE = preload("res://scenes/tower_placeholder.tscn")
-const BIGGER_WALL_SCENE = preload("res://scenes/towers/feeding_tower.tscn")
+var BIGGER_WALL_SCENE = preload("res://scenes/towers/feeding_tower.tscn")
 var existing_walls = {} #kind of a crazy method here. I'll use dictionaries to keep track of placed tiles
 var existing_towers = {}
 var resources:int = 0
@@ -11,10 +11,17 @@ const wall_cost:int = 10
 const big_wall_cost:int = 100
 signal resources_changed(resources)
 
+var game_manager
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_game_manager()
+
+
+func get_game_manager():
+	var level_node = $"/root".get_child(0)
+	game_manager = level_node.get_node("Game Manager")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

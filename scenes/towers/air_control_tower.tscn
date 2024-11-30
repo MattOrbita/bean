@@ -63,11 +63,10 @@ input_pickable = true
 script = ExtResource("1_2bjoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.14159
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_1v7ep")
 region_enabled = true
-region_rect = Rect2(176.214, -67.54, 640, 640)
+region_rect = Rect2(86.46, -67.54, 640, 640)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mw1jv")
