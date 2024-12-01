@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://8en3pgbudgkx"]
 
 [ext_resource type="Script" path="res://scripts/tower_placeholder.gd" id="1_4navn"]
-[ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/sheet.png" id="2_yj1tx"]
+[ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/walls_sheet.png" id="2_yj1tx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24hrt"]
 size = Vector2(32, 32)
