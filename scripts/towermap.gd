@@ -10,6 +10,7 @@ var resources:int = 0
 const wall_cost:int = 10
 const big_wall_cost:int = 100
 signal resources_changed(resources)
+@export var navlayer: Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -58,6 +59,7 @@ func place_wall(clicked_tile, tile_pos):
 	if clicked_tile != new_tile_id and resources >= wall_cost:  # Ensure a tile was actually clicked
 		set_resources(resources - wall_cost)
 		set_cell(tile_pos, 0, new_tile_id, 0)
+		navlayer.removeNav(tile_pos) #sends a signal to the nav layer to remove navagation to that tile
 		print("clicked!")
 		print(tile_pos)
 		var wall := WALL_SCENE.instantiate() as Wall
@@ -71,6 +73,7 @@ func place_wall(clicked_tile, tile_pos):
 func delete_wall(clicked_tile, tile_pos):
 	if clicked_tile == new_tile_id:  # Ensure a tile was actually clicked
 		set_cell(tile_pos, -1, new_tile_id, -1)
+		navlayer.addNav(tile_pos) #sends a signal to the nav layer to add navagation back to that tile
 		print("clicked!")
 		print(tile_pos)
 		if tile_pos in existing_walls:
