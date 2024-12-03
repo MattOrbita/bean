@@ -32,6 +32,25 @@ func _process(_delta):
 	var tile_pos = local_to_map(mouse_pos)
 	var clicked_tile = get_cell_atlas_coords(tile_pos)
 	
+	listen_for_place_input(tile_pos, clicked_tile)
+	
+	for wall in existing_walls:
+		if existing_walls[wall] == null or (str(existing_walls[wall]) == "<Freed Object>"):
+			existing_walls.erase(wall)
+			delete_wall(get_cell_atlas_coords(wall), wall)
+	
+	for tower in existing_towers:
+		if existing_towers[tower] == null or (str(existing_towers[tower]) == "<Freed Object>"):
+			existing_towers.erase(tower)
+			delete_big_wall(tower)
+	#pass
+
+
+func listen_for_place_input(tile_pos, clicked_tile):
+	# if tower selector UI is open, then don't allow player to place anything
+	if game_manager.is_selector_open:
+		return
+	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if Input.is_action_pressed("ui_accept"):
 			place_walls_grid(tile_pos, 2)
@@ -47,18 +66,6 @@ func _process(_delta):
 			delete_big_wall(tile_pos)
 		else:
 			delete_wall(clicked_tile, tile_pos)
-	
-	for wall in existing_walls:
-		if existing_walls[wall] == null or (str(existing_walls[wall]) == "<Freed Object>"):
-			existing_walls.erase(wall)
-			delete_wall(get_cell_atlas_coords(wall), wall)
-	
-	for tower in existing_towers:
-		if existing_towers[tower] == null or (str(existing_towers[tower]) == "<Freed Object>"):
-			existing_towers.erase(tower)
-			delete_big_wall(tower)
-	#pass
-
 
 
 func place_wall(clicked_tile, tile_pos):
