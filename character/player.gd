@@ -41,10 +41,11 @@ func set_zone(value):
 		##current_target.position
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("click"):
-		stop = false
-		moving = true
-		destination = get_global_mouse_position()
+	pass # click to move feature disabled to not interfere with tower placing
+	#if Input.is_action_pressed("click"):
+		#stop = false
+		#moving = true
+		#destination = get_global_mouse_position()
 	
 		
 func _physics_process(_delta: float) -> void:

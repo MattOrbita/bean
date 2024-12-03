@@ -482,7 +482,6 @@ parameters/Idle/blend_position = Vector2(-0.317965, 0.327434)
 parameters/Walk/blend_position = Vector2(-0.335453, -0.0265486)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 
 [node name="detected_player" type="Area2D" parent="."]
 scale = Vector2(0.480004, 0.759999)
