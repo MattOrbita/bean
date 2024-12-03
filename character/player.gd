@@ -41,7 +41,15 @@ func set_zone(value):
 		##current_target.position
 
 func _unhandled_input(_event: InputEvent) -> void:
-	pass # click to move feature disabled to not interfere with tower placing
+	# player attacks as long as they are motionless and the attack button is held
+	if Input.is_action_pressed("attack"):
+		attack = true
+		stop = true
+	else:
+		attack = false
+		stop = false
+	
+	# click to move feature disabled to not interfere with tower placing
 	#if Input.is_action_pressed("click"):
 		#stop = false
 		#moving = true
