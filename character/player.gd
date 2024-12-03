@@ -12,6 +12,12 @@ var attack = false
 
 var current_target : Node2D
 
+# new variables below
+var hp:int = 1000
+@onready var label = $Label
+@onready var regen_timer = $RegenTimer #Stuff like this are temporary features to show and test how things work
+signal health_changed(new_health) #we're getting fancy with godot features up in here. fun learning experience
+
 func set_attack(value):
 	if value:
 		attack = true
@@ -74,7 +80,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
+	$Label.text = str(hp)
+
 func set_walking(value):
 	animation_tree["parameters/conditions/Walk"] = value
 	animation_tree["parameters/conditions/Idle"] = not value
@@ -94,4 +101,17 @@ func update_blend_position():
 	animation_tree["parameters/Idle/blend_position"] = direction.normalized()
 	animation_tree["parameters/Walk/blend_position"] = direction.normalized() 
 	animation_tree["parameters/Attack/blend_position"] = direction.normalized() 
-	
+
+
+# new functions below
+func set_hp(amount:int):
+	hp = amount
+
+
+func resources():
+	return hp
+
+
+func _on_regen_timer_timeout() -> void:
+	hp += 100
+	health_changed.emit(hp)

@@ -7,7 +7,7 @@ var enemies = []
 var walls_and_towers : TileMapLayer
 var tower_selector : CanvasLayer
 
-var player_script : Script = preload("res://scripts/player.gd")
+var player_script : Script = preload("res://character/player.gd")
 #var enemy_script : Script = preload("res://scripts/enemy.gd")
 var enemy_script : Script = preload("res://scenes/enemy_placeholder.gd")
 

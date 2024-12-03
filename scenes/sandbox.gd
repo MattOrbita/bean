@@ -1,5 +1,5 @@
 extends Node2D
-@onready var player = $Player
+@onready var player = $player
 @onready var walls_and_towers = $"Tiles/Walls and Towers"
 
 

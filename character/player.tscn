@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://bkk4ddjjlc6bc"]
+[gd_scene load_steps=43 format=3 uid="uid://bkk4ddjjlc6bc"]
 
 [ext_resource type="Script" path="res://character/player.gd" id="1_ibb6s"]
-[ext_resource type="Texture2D" uid="uid://b2vi72t3av654" path="res://assets/Player.png" id="2_r7wmw"]
+[ext_resource type="Texture2D" uid="uid://b2vi72t3av654" path="res://Assets/Player.png" id="2_r7wmw"]
+[ext_resource type="LabelSettings" uid="uid://dosuvpujf7nbq" path="res://misc/player_health_label_setting.tres" id="3_wrkt6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pg6l7"]
 radius = 21.7391
@@ -450,6 +451,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 radius = 11.0298
 
 [node name="player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_ibb6s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -488,3 +490,18 @@ scale = Vector2(0.480004, 0.759999)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detected_player"]
 scale = Vector2(4.91664, 4.94737)
 shape = SubResource("CircleShape2D_tk6n0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -53.0
+offset_top = -106.0
+offset_right = 50.0
+offset_bottom = -61.0
+text = "1000"
+label_settings = ExtResource("3_wrkt6")
+horizontal_alignment = 1
+
+[node name="RegenTimer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
