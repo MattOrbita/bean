@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://sx8538ks2cum"]
+
+[ext_resource type="ButtonGroup" uid="uid://ce6knvnllsxh8" path="res://misc/tower_button_group.tres" id="1_dfskg"]
+[ext_resource type="Script" path="res://scripts/tower_selector.gd" id="1_dgbha"]
+[ext_resource type="Theme" uid="uid://c6y2jbpy6m03p" path="res://misc/new_button_theme.tres" id="2_7yai5"]
+[ext_resource type="ButtonGroup" uid="uid://dyx645rtgjhb7" path="res://misc/wall_button_group.tres" id="4_q75wr"]
+
+[node name="Tower Selector" type="CanvasLayer"]
+script = ExtResource("1_dgbha")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Towers" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Towers"]
+layout_mode = 2
+text = "Towers"
+horizontal_alignment = 1
+
+[node name="Shooter Tower" type="Button" parent="Control/HBoxContainer/Towers"]
+layout_mode = 2
+theme = ExtResource("2_7yai5")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("1_dfskg")
+text = "Shooter Tower"
+
+[node name="Food Tower" type="Button" parent="Control/HBoxContainer/Towers"]
+layout_mode = 2
+theme = ExtResource("2_7yai5")
+toggle_mode = true
+button_group = ExtResource("1_dfskg")
+text = "Food Tower"
+
+[node name="Walls" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Walls"]
+layout_mode = 2
+text = "Walls"
+horizontal_alignment = 1
+
+[node name="Wall" type="Button" parent="Control/HBoxContainer/Walls"]
+layout_mode = 2
+theme = ExtResource("2_7yai5")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("4_q75wr")
+text = "Wall"

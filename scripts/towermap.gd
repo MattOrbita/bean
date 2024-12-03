@@ -3,7 +3,7 @@ extends TileMapLayer
 var new_tile_id = Vector2i(6, 11)
 const WALL_SCENE = preload("res://scenes/wall.tscn")
 #const BIGGER_WALL_SCENE = preload("res://scenes/tower_placeholder.tscn")
-const BIGGER_WALL_SCENE = preload("res://scenes/towers/feeding_tower.tscn")
+var BIGGER_WALL_SCENE = preload("res://scenes/towers/feeding_tower.tscn")
 var existing_walls = {} #kind of a crazy method here. I'll use dictionaries to keep track of placed tiles
 var existing_towers = {}
 var resources:int = 0
@@ -11,10 +11,17 @@ const wall_cost:int = 10
 const big_wall_cost:int = 100
 signal resources_changed(resources)
 
+var game_manager
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_game_manager()
+
+
+func get_game_manager():
+	var level_node = $"/root".get_child(0)
+	game_manager = level_node.get_node("Game Manager")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,6 +31,25 @@ func _process(_delta):
 	print(mouse_pos)
 	var tile_pos = local_to_map(mouse_pos)
 	var clicked_tile = get_cell_atlas_coords(tile_pos)
+	
+	listen_for_place_input(tile_pos, clicked_tile)
+	
+	for wall in existing_walls:
+		if existing_walls[wall] == null or (str(existing_walls[wall]) == "<Freed Object>"):
+			existing_walls.erase(wall)
+			delete_wall(get_cell_atlas_coords(wall), wall)
+	
+	for tower in existing_towers:
+		if existing_towers[tower] == null or (str(existing_towers[tower]) == "<Freed Object>"):
+			existing_towers.erase(tower)
+			delete_big_wall(tower)
+	#pass
+
+
+func listen_for_place_input(tile_pos, clicked_tile):
+	# if tower selector UI is open, then don't allow player to place anything
+	if game_manager.is_selector_open:
+		return
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if Input.is_action_pressed("ui_accept"):
@@ -40,18 +66,6 @@ func _process(_delta):
 			delete_big_wall(tile_pos)
 		else:
 			delete_wall(clicked_tile, tile_pos)
-	
-	for wall in existing_walls:
-		if existing_walls[wall] == null or (str(existing_walls[wall]) == "<Freed Object>"):
-			existing_walls.erase(wall)
-			delete_wall(get_cell_atlas_coords(wall), wall)
-	
-	for tower in existing_towers:
-		if existing_towers[tower] == null or (str(existing_towers[tower]) == "<Freed Object>"):
-			existing_towers.erase(tower)
-			delete_big_wall(tower)
-	#pass
-
 
 
 func place_wall(clicked_tile, tile_pos):
