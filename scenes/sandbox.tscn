@@ -1,14 +1,35 @@
+[gd_scene load_steps=17 format=4 uid="uid://dtwpo1i4et0sj"]
 
-[gd_scene load_steps=9 format=4 uid="uid://dtwpo1i4et0sj"]
-
-[ext_resource type="PackedScene" uid="uid://bnx0n8o1j070u" path="res://scenes/enemy_placeholder.tscn" id="1_m6vuy"]
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
 [ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="1_pct5a"]
-
+[ext_resource type="PackedScene" uid="uid://qqhayw1qd1bh" path="res://scenes/enemies/basic_enemy.tscn" id="2_ljqcj"]
 [ext_resource type="Script" path="res://scripts/towermap.gd" id="3_abshe"]
-[ext_resource type="PackedScene" path="res://scenes/game_manager.tscn" id="5_lagr5"]
+[ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cpf7s"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_unhdk"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8bo1d"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e2r70"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rkdgf"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_14krl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uwavg"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vfi4r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w3cgr"]
 texture = ExtResource("1_nwhhx")
@@ -541,7 +562,7 @@ texture = ExtResource("1_nwhhx")
 17:11/next_alternative_id = 2
 17:11/0 = 0
 17:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-17:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h7o46")
+17:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_e2r70")
 17:11/1 = 1
 17:11/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_rkdgf")
 18:11/0 = 0
@@ -565,13 +586,13 @@ sources/0 = SubResource("TileSetAtlasSource_w3cgr")
 [node name="Sandbox" type="Node2D"]
 script = ExtResource("1_nysn3")
 
-
-[node name="Enemy" parent="." instance=ExtResource("1_m6vuy")]
-z_index = 1
-position = Vector2(296, -11)
-
 [node name="Player" parent="." instance=ExtResource("1_pct5a")]
+z_index = 2
+
+[node name="basic_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ljqcj")]
 z_index = 1
+position = Vector2(400, -1)
+player = NodePath("../Player")
 
 [node name="Tiles" type="Node" parent="."]
 
