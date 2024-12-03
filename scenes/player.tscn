@@ -9,6 +9,10 @@ size = Vector2(130, 130)
 [sub_resource type="LabelSettings" id="LabelSettings_yv56d"]
 font_size = 32
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hjdup"]
+radius = 132.034
+
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
@@ -37,3 +41,14 @@ wait_time = 2.5
 autostart = true
 
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_hjdup")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
