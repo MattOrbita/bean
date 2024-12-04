@@ -12,7 +12,11 @@ const big_wall_cost:int = 100
 signal resources_changed(resources)
 @export var navlayer: Node2D
 
+var place_proximity = 220
 var game_manager
+
+var shooter_tower : PackedScene = preload("res://scenes/towers/air_control_tower.tscn")
+var food_tower : PackedScene = preload("res://scenes/towers/feeding_tower.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,7 +33,7 @@ func get_game_manager():
 func _process(_delta):
 	#print(get_global_mouse_position())
 	var mouse_pos = Vector2i(to_local(get_global_mouse_position()))
-	print(mouse_pos)
+	#print(mouse_pos)
 	var tile_pos = local_to_map(mouse_pos)
 	var clicked_tile = get_cell_atlas_coords(tile_pos)
 	
@@ -48,8 +52,11 @@ func _process(_delta):
 
 
 func listen_for_place_input(tile_pos, clicked_tile):
-	# if tower selector UI is open, then don't allow player to place anything
-	if game_manager.is_selector_open:
+	var player_to_mouse = get_global_mouse_position() - game_manager.player.global_position
+	var place_distance = player_to_mouse.length()
+	
+	# only allow player to place within place_proximity units of themself
+	if place_distance > place_proximity:
 		return
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -163,3 +170,6 @@ func set_resources(amount):
 	
 func resources_left():
 	return resources
+
+func update_selected_tower(button : Button):
+	pass

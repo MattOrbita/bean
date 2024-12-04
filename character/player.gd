@@ -18,22 +18,26 @@ var hp:int = 1000
 @onready var regen_timer = $RegenTimer #Stuff like this are temporary features to show and test how things work
 signal health_changed(new_health) #we're getting fancy with godot features up in here. fun learning experience
 
+# empty function used by enemies to locate the player
+func player():
+	pass
+
+
 func set_attack(value):
 	if value:
 		attack = true
 	
 	else:
 		attack = false
-		
+
+
 func set_zone(value):
 	if value:
 		stop = true
 	else:
 		stop = false
-	
-	
-		
-	
+
+
 #func set_target(node : Node2D):
 	#current_target = node
 	#
@@ -124,3 +128,7 @@ func resources():
 func _on_regen_timer_timeout() -> void:
 	hp += 100
 	health_changed.emit(hp)
+
+
+func take_damage(dmg):
+	pass
