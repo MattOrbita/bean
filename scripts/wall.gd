@@ -4,6 +4,9 @@ class_name Wall extends StaticBody2D
 @onready var sprite_2d = $Sprite2D
 @onready var label = $Label
 
+func wall():
+	pass
+
 var hp:int = 100
 
 var has_mouse:bool = false
@@ -25,8 +28,9 @@ func destroyed():
 	print("wall destroyed!")
 	queue_free()
 	
-func hit():
-	hp -= 10
+func take_damage(damage):
+	hp -= damage
+	#print(hp)
 	
 func remaining_hp_proportion():
 	return float(hp)/100.0

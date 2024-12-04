@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const speed = 100
-const damage = 10
+const damage = 20
 var targets = []
 var attack_cooldown = true
 
