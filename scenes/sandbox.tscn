@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qqhayw1qd1bh" path="res://scenes/enemies/basic_enemy.tscn" id="2_ljqcj"]
 [ext_resource type="Script" path="res://scripts/towermap.gd" id="3_abshe"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
-[ext_resource type="PackedScene" path="res://scenes/tower_selector.tscn" id="7_6dxxn"]
+[ext_resource type="PackedScene" uid="uid://bo656nj2xs2l3" path="res://scenes/tower_selector.tscn" id="7_6dxxn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cpf7s"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
