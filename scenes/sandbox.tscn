@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/walls_sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
-[ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="1_pct5a"]
+[ext_resource type="PackedScene" uid="uid://bkk4ddjjlc6bc" path="res://character/player.tscn" id="2_km8ak"]
 [ext_resource type="PackedScene" uid="uid://qqhayw1qd1bh" path="res://scenes/enemies/basic_enemy.tscn" id="2_ljqcj"]
 [ext_resource type="Script" path="res://scripts/towermap.gd" id="3_abshe"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
@@ -586,13 +586,12 @@ sources/0 = SubResource("TileSetAtlasSource_w3cgr")
 [node name="Sandbox" type="Node2D"]
 script = ExtResource("1_nysn3")
 
-[node name="Player" parent="." instance=ExtResource("1_pct5a")]
-z_index = 2
+[node name="player" parent="." instance=ExtResource("2_km8ak")]
 
 [node name="basic_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ljqcj")]
 z_index = 1
 position = Vector2(400, -1)
-player = NodePath("../Player")
+player = NodePath("../player")
 
 [node name="Tiles" type="Node" parent="."]
 
@@ -610,5 +609,4 @@ script = ExtResource("3_abshe")
 
 [node name="Game Manager" parent="." instance=ExtResource("5_lagr5")]
 
-[connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="resources_changed" from="Tiles/Walls and Towers" to="." method="_on_walls_and_towers_resources_changed"]
