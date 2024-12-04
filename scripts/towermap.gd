@@ -28,7 +28,7 @@ func get_game_manager():
 func _process(_delta):
 	#print(get_global_mouse_position())
 	var mouse_pos = Vector2i(to_local(get_global_mouse_position()))
-	print(mouse_pos)
+	#print(mouse_pos)
 	var tile_pos = local_to_map(mouse_pos)
 	var clicked_tile = get_cell_atlas_coords(tile_pos)
 	
