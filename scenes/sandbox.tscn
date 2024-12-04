@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=4 uid="uid://dtwpo1i4et0sj"]
+[gd_scene load_steps=17 format=4 uid="uid://boekk8m5axcy4"]
 
-[ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/sheet.png" id="1_nwhhx"]
+[ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/walls_sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
 [ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="1_pct5a"]
 [ext_resource type="PackedScene" uid="uid://qqhayw1qd1bh" path="res://scenes/enemies/basic_enemy.tscn" id="2_ljqcj"]
