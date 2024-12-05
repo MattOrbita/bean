@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgydqxqxrn7wf"]
+
+[ext_resource type="Script" path="res://scripts/proximity_checker.gd" id="1_3h1r7"]
+
+[node name="Proximity Checker" type="Node2D"]
+script = ExtResource("1_3h1r7")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+hit_from_inside = true

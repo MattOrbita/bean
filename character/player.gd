@@ -18,6 +18,9 @@ var hp:int = 1000
 @onready var regen_timer = $RegenTimer #Stuff like this are temporary features to show and test how things work
 signal health_changed(new_health) #we're getting fancy with godot features up in here. fun learning experience
 
+var size_step = 0.001
+
+
 # empty function used by enemies to locate the player
 func player():
 	pass
@@ -119,6 +122,10 @@ func update_blend_position():
 # new functions below
 func set_hp(amount:int):
 	hp = amount
+	
+	# adapt player size according to health
+	var target_scale = 1 + int(hp) * size_step
+	scale = Vector2(target_scale, target_scale)
 
 
 func resources():
@@ -126,7 +133,7 @@ func resources():
 
 
 func _on_regen_timer_timeout() -> void:
-	hp += 100
+	set_hp(hp + 100)
 	health_changed.emit(hp)
 
 
