@@ -6,13 +6,18 @@ var enemies = []
 
 var walls_and_towers : TileMapLayer
 var tower_selector : CanvasLayer
+var proximity_checker : Node2D
 
 var player_script : Script = preload("res://character/player.gd")
-#var enemy_script : Script = preload("res://scripts/enemy.gd")
 var enemy_script : Script = preload("res://scenes/enemy_placeholder.gd")
 
 var walls_and_towers_script : Script = preload("res://scripts/towermap.gd")
 var tower_selector_script : Script = preload("res://scripts/tower_selector.gd")
+var proximity_checker_script : Script = preload("res://scripts/proximity_checker.gd")
+
+
+func can_place() -> bool:
+	return proximity_checker.can_place
 
 
 func _ready() -> void:
@@ -31,15 +36,17 @@ func _process(delta: float) -> void:
 func find_important_nodes(root_node : Node):
 	var script = root_node.get_script()
 	
-	if script == enemy_script:
+	if script == player_script:
+		player = root_node
+	elif script == enemy_script:
 		enemies.append(root_node)
 	
-	elif script == player_script:
-		player = root_node
 	elif script == walls_and_towers_script:
 		walls_and_towers = root_node
 	elif script == tower_selector_script:
 		tower_selector = root_node
+	elif script == proximity_checker_script:
+		proximity_checker = root_node
 	
 	for child in root_node.get_children():
 		find_important_nodes(child)

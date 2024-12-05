@@ -52,11 +52,8 @@ func _process(_delta):
 
 
 func listen_for_place_input(tile_pos, clicked_tile):
-	var player_to_mouse = get_global_mouse_position() - game_manager.player.global_position
-	var place_distance = player_to_mouse.length()
-	
 	# only allow player to place within place_proximity units of themself
-	if place_distance > place_proximity:
+	if not game_manager.can_place():
 		return
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
