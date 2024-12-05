@@ -611,13 +611,13 @@ script = ExtResource("1_nysn3")
 z_index = 2
 
 [node name="basic_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ljqcj")]
-z_index = 1
+z_index = 3
 position = Vector2(400, -1)
 collision_layer = 4
 player = NodePath("../Player")
 
 [node name="BirdEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_0ex47")]
-z_index = 1
+z_index = 3
 position = Vector2(-474, 53)
 player = NodePath("../Player")
 
