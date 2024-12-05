@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://dtwpo1i4et0sj"]
+[gd_scene load_steps=24 format=4 uid="uid://dtwpo1i4et0sj"]
 
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
 [ext_resource type="PackedScene" uid="uid://swwsaucm67rx" path="res://scenes/player.tscn" id="1_pct5a"]
 [ext_resource type="PackedScene" uid="uid://qqhayw1qd1bh" path="res://scenes/enemies/basic_enemy.tscn" id="2_ljqcj"]
+[ext_resource type="Script" path="res://scenes/wave_manager.gd" id="3_aanqk"]
 [ext_resource type="Script" path="res://scripts/towermap.gd" id="3_abshe"]
 [ext_resource type="PackedScene" uid="uid://b17jmhvmppjoi" path="res://scenes/enemies/Bird_enemy.tscn" id="4_0ex47"]
 [ext_resource type="Texture2D" uid="uid://bgv32tfo0r8dc" path="res://Assets/nav.png" id="4_h6xoi"]
@@ -610,16 +611,41 @@ script = ExtResource("1_nysn3")
 [node name="Player" parent="." instance=ExtResource("1_pct5a")]
 z_index = 2
 
-[node name="basic_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ljqcj")]
-z_index = 3
-position = Vector2(400, -1)
-collision_layer = 4
+[node name="Wave Manager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_aanqk")
+basic_enemy_scene = ExtResource("2_ljqcj")
+bird_enemy_scene = ExtResource("4_0ex47")
 player = NodePath("../Player")
 
-[node name="BirdEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_0ex47")]
-z_index = 3
-position = Vector2(-474, 53)
-player = NodePath("../Player")
+[node name="standbyTimer" type="Timer" parent="Wave Manager"]
+wait_time = 10.0
+one_shot = true
+
+[node name="spawn_points" type="Node" parent="Wave Manager"]
+
+[node name="spawn_point1" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(850, 0)
+
+[node name="spawn_point2" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(-850, 0)
+
+[node name="spawn_point3" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(0, 650)
+
+[node name="spawn_point4" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(0, -650)
+
+[node name="spawn_point5" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(850, 650)
+
+[node name="spawn_point6" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(-850, 650)
+
+[node name="spawn_point7" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(850, -650)
+
+[node name="spawn_point8" type="Marker2D" parent="Wave Manager/spawn_points"]
+position = Vector2(-850, -650)
 
 [node name="Tiles" type="Node" parent="."]
 
@@ -648,4 +674,5 @@ navlayer = NodePath("../nav")
 [node name="Game Manager" parent="." instance=ExtResource("5_lagr5")]
 
 [connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
+[connection signal="timeout" from="Wave Manager/standbyTimer" to="Wave Manager" method="_on_standby_timer_timeout"]
 [connection signal="resources_changed" from="Tiles/Walls and Towers" to="." method="_on_walls_and_towers_resources_changed"]

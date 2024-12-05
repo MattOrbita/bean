@@ -2,10 +2,14 @@ extends CharacterBody2D
 
 const base_speed = 100
 const base_damage = 20
+const base_value = 15
 const base_health = 50
-var health = base_health
-var targets = []
-var attack_cooldown = true
+var wave_num: int
+var value: int
+var health: int
+var damage: int
+var targets: Array
+var attack_cooldown: bool
 
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -15,7 +19,14 @@ func enemy():
 	pass
 
 func _ready() -> void:
-	pass
+	var wave_manager = self.get_parent()
+	player = wave_manager.get_player()
+	wave_num = wave_manager.get_wave()
+	value = base_value * int(1 + wave_num)
+	health = int(base_health * (1 + (wave_num/2)))
+	damage = int(base_damage * (1 + (wave_num/3)))
+	targets = []
+	attack_cooldown = true
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -34,7 +45,9 @@ func take_damage(damage: int):
 		death()
 
 func death():
-	pass
+	player.increase_hp(value)
+	#notify wave manager (WIP)
+	self.queue_free() #deletion
 
 
 #makes a new path every .2 seconds
@@ -56,5 +69,5 @@ func _on_attack_area_body_shape_exited(body_rid: RID, body: Node2D, body_shape_i
 			targets.erase(body)
 
 func _on_attack_cooldown_timeout() -> void:
-	print("attack cd")
+	#print("attack cd")
 	attack_cooldown = true
