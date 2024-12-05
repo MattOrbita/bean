@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dtwpo1i4et0sj"]
+[gd_scene load_steps=25 format=4 uid="uid://b0ovib4in8jut"]
 
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/walls_sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qqhayw1qd1bh" path="res://scenes/enemies/basic_enemy.tscn" id="2_ljqcj"]
 [ext_resource type="Script" path="res://scenes/wave_manager.gd" id="3_aanqk"]
 [ext_resource type="Script" path="res://scripts/towermap.gd" id="3_abshe"]
-[ext_resource type="PackedScene" uid="uid://b17jmhvmppjoi" path="res://scenes/enemies/Bird_enemy.tscn" id="4_0ex47"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/Bird_enemy.tscn" id="4_0ex47"]
 [ext_resource type="Texture2D" uid="uid://bgv32tfo0r8dc" path="res://Assets/nav.png" id="4_h6xoi"]
 [ext_resource type="Script" path="res://scenes/nav.gd" id="5_b415m"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
@@ -615,7 +615,7 @@ script = ExtResource("1_nysn3")
 script = ExtResource("3_aanqk")
 basic_enemy_scene = ExtResource("2_ljqcj")
 bird_enemy_scene = ExtResource("4_0ex47")
-player = NodePath("../Player")
+player = NodePath("../player")
 
 [node name="standbyTimer" type="Timer" parent="Wave Manager"]
 wait_time = 10.0
