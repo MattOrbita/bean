@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dtwpo1i4et0sj"]
+[gd_scene load_steps=23 format=4 uid="uid://dtwpo1i4et0sj"]
 
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/walls_sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
