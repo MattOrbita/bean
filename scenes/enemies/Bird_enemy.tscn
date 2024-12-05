@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b17jmhvmppjoi"]
+
+[ext_resource type="Script" path="res://scenes/enemies/bird_enemy.gd" id="1_b354n"]
+[ext_resource type="Texture2D" uid="uid://d8my8ehkyb84" path="res://images/enemy dog.jpg" id="1_lxhlp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e5iis"]
+radius = 114.039
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6ika"]
+
+[node name="BirdEnemy" type="CharacterBody2D"]
+script = ExtResource("1_b354n")
+
+[node name="PathTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_lxhlp")
+flip_v = true
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_e5iis")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f6ika")
+disabled = true
+
+[connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_shape_exited" from="AttackArea" to="." method="_on_attack_area_body_shape_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
