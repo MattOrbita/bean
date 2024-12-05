@@ -57,3 +57,6 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 
 func _on_attack_cooldown_timeout() -> void:
 	attack_cooldown = true
+	
+func increase_hp(health:int):
+	hp+=health

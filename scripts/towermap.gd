@@ -81,8 +81,8 @@ func place_wall(clicked_tile, tile_pos):
 		set_resources(resources - wall_cost)
 		set_cell(tile_pos, 0, new_tile_id, 0)
 		navlayer.removeNav(tile_pos) #sends a signal to the nav layer to remove navagation to that tile
-		print("clicked!")
-		print(tile_pos)
+		#print("clicked!")
+		#print(tile_pos)
 		var wall := WALL_SCENE.instantiate() as Wall
 		wall.position.x = to_global(map_to_local(tile_pos)).x
 		wall.position.y = to_global(map_to_local(tile_pos)).y
@@ -95,8 +95,8 @@ func delete_wall(clicked_tile, tile_pos):
 	if clicked_tile == new_tile_id:  # Ensure a tile was actually clicked
 		set_cell(tile_pos, -1, new_tile_id, -1)
 		navlayer.addNav(tile_pos) #sends a signal to the nav layer to add navagation back to that tile
-		print("clicked!")
-		print(tile_pos)
+		#print("clicked!")
+		#print(tile_pos)
 		if tile_pos in existing_walls:
 			var wall = existing_walls[tile_pos]
 			if wall is Wall:  # Check if the node is a Wall instance
