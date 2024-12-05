@@ -13,10 +13,20 @@ var attack = false
 var current_target : Node2D
 
 # new variables below
-var hp:int = 1000
+var hp:int
 @onready var label = $Label
 @onready var regen_timer = $RegenTimer #Stuff like this are temporary features to show and test how things work
 signal health_changed(new_health) #we're getting fancy with godot features up in here. fun learning experience
+
+var size_step = 0.001
+
+@onready var player_sprite : Node2D = $Sprite
+@onready var player_hitbox : Node2D = $"Detected Player"
+
+
+func _ready() -> void:
+	set_hp(1000)
+
 
 # empty function used by enemies to locate the player
 func player():
@@ -119,6 +129,12 @@ func update_blend_position():
 # new functions below
 func set_hp(amount:int):
 	hp = amount
+	
+	# adapt player size according to health
+	var target_scale = 1 + int(hp) * size_step
+	
+	player_sprite.scale = Vector2(target_scale, target_scale)
+	player_hitbox.scale = Vector2(target_scale, target_scale)
 
 
 func resources():
@@ -126,9 +142,9 @@ func resources():
 
 
 func _on_regen_timer_timeout() -> void:
-	hp += 100
+	set_hp(hp + 100)
 	health_changed.emit(hp)
 
 
 func take_damage(dmg):
-	pass
+	set_hp(hp - dmg)

@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/nav.gd" id="5_b415m"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
 [ext_resource type="PackedScene" uid="uid://bo656nj2xs2l3" path="res://scenes/tower_selector.tscn" id="7_6dxxn"]
+[ext_resource type="PackedScene" uid="uid://dgydqxqxrn7wf" path="res://scenes/proximity_checker.tscn" id="10_b6rm4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bobvr"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -674,6 +675,8 @@ navlayer = NodePath("../nav")
 [node name="Game Manager" parent="." instance=ExtResource("5_lagr5")]
 
 [node name="Tower Selector" parent="." instance=ExtResource("7_6dxxn")]
+
+[node name="Proximity Checker" parent="." instance=ExtResource("10_b6rm4")]
 
 [connection signal="health_changed" from="player" to="." method="_on_player_health_changed"]
 [connection signal="timeout" from="Wave Manager/standbyTimer" to="Wave Manager" method="_on_standby_timer_timeout"]
