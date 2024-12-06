@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf620q3h7ydor"]
+
+[ext_resource type="Script" path="res://scripts/bg_music_manager.gd" id="1_adi7m"]
+[ext_resource type="AudioStream" uid="uid://chr2w446egtpa" path="res://Assets/Tyler, the Creator - Balloon (HQ Instrumental) (192 kbps).mp3" id="2_8p0pf"]
+
+[node name="BGMusicManager" type="Node"]
+script = ExtResource("1_adi7m")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8p0pf")
+
+[node name="SongTimer" type="Timer" parent="BGM"]
+
+[connection signal="timeout" from="BGM/SongTimer" to="." method="_on_song_timer_timeout"]

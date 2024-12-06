@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbnpvpcuutktd"]
+
+[ext_resource type="Script" path="res://scripts/tower_scripts/feeding_tower.gd" id="1_1v8qr"]
+[ext_resource type="Texture2D" uid="uid://b0h1mujl13l7m" path="res://images/can of beans w beans.png" id="1_s8p8h"]
+[ext_resource type="Texture2D" uid="uid://50i18r5f1oap" path="res://images/can of beans wo beans.webp" id="2_caxk3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3v0b"]
+size = Vector2(96, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyk0s"]
+size = Vector2(150, 150)
+
+[node name="Feeding Tower" type="StaticBody2D"]
+script = ExtResource("1_1v8qr")
+
+[node name="Sprite W Food" type="Sprite2D" parent="."]
+scale = Vector2(0.410256, 0.444444)
+texture = ExtResource("1_s8p8h")
+
+[node name="Sprite No Food" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 0.17)
+scale = Vector2(0.472, 0.432)
+texture = ExtResource("2_caxk3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j3v0b")
+
+[node name="Pick Up Trigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pick Up Trigger"]
+shape = SubResource("RectangleShape2D_iyk0s")
+
+[connection signal="body_entered" from="Pick Up Trigger" to="." method="_on_pick_up_trigger_body_entered"]

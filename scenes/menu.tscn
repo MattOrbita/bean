@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcugdgpmukqaa"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ja0ej"]
+[ext_resource type="Texture2D" uid="uid://cx4h5chy5qnll" path="res://Assets/battleback1_0.png" id="1_mh586"]
+[ext_resource type="Theme" uid="uid://n668dsw5414c" path="res://Assets/fish_theme.tres" id="2_al1p2"]
+[ext_resource type="Theme" uid="uid://n668dsw5414c" path="res://assets/fish_theme.tres" id="3_3lol7"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ja0ej")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mh586")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.224826
+anchor_top = 0.0632716
+anchor_right = 0.775174
+anchor_bottom = 0.165123
+grow_horizontal = 2
+theme = ExtResource("2_al1p2")
+theme_override_font_sizes/font_size = 128
+text = "BEAN.    The  Game."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CreditsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.852
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0960083
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_3lol7")
+theme_override_font_sizes/font_size = 43
+text = "Disclaimer.  Some of these songs may be copyrighted."
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.324
+anchor_top = 0.203
+anchor_right = 0.676
+anchor_bottom = 0.797
+offset_left = 0.252014
+offset_top = -0.0440063
+offset_right = -0.252075
+offset_bottom = 0.0439453
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_al1p2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_al1p2")
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

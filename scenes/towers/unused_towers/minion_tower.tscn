@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://7h8bax1v7b5b"]
+
+[ext_resource type="Texture2D" uid="uid://b6lygxajwr8tl" path="res://images/angry bean.jpg.webp" id="1_cushr"]
+[ext_resource type="Script" path="res://scripts/tower_scripts/unused_tower_scripts/minion_tower.gd" id="1_t5r4i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yo4lr"]
+size = Vector2(80, 74.35)
+
+[sub_resource type="Animation" id="Animation_baglh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bclby"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -3.14159, -6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sr8kq"]
+_data = {
+"RESET": SubResource("Animation_baglh"),
+"attack": SubResource("Animation_bclby")
+}
+
+[node name="Minion Tower" type="CharacterBody2D"]
+collision_layer = 8
+input_pickable = true
+script = ExtResource("1_t5r4i")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_cushr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yo4lr")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sr8kq")
+}
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
