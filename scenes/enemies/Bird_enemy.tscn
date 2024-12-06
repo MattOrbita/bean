@@ -233,7 +233,10 @@ animation = &"idle"
 autoplay = "idle"
 speed_scale = 1.6
 
+[node name="DeathTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_shape_exited" from="AttackArea" to="." method="_on_attack_area_body_shape_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
