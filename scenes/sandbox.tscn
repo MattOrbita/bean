@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://b0ovib4in8jut"]
+[gd_scene load_steps=26 format=4 uid="uid://ddyjc1ty3pc7h"]
 
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/walls_sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scenes/nav.gd" id="5_b415m"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
 [ext_resource type="PackedScene" uid="uid://bo656nj2xs2l3" path="res://scenes/tower_selector.tscn" id="7_6dxxn"]
-[ext_resource type="PackedScene" uid="uid://dgydqxqxrn7wf" path="res://scenes/proximity_checker.tscn" id="10_b6rm4"]
+[ext_resource type="PackedScene" path="res://scenes/proximity_checker.tscn" id="10_b6rm4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bobvr"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

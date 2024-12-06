@@ -14,6 +14,8 @@ var current_target : Node2D
 
 # new variables below
 var hp:int
+var attack_damage : int = 25
+
 @onready var label = $Label
 @onready var regen_timer = $RegenTimer #Stuff like this are temporary features to show and test how things work
 signal health_changed(new_health) #we're getting fancy with godot features up in here. fun learning experience
@@ -22,10 +24,25 @@ var size_step = 0.001
 
 @onready var player_sprite : Node2D = $Sprite
 @onready var player_hitbox : Node2D = $"Detected Player"
+@onready var attack_collider_parent : Node2D = $"Attack Colliders"
 
 
 func _ready() -> void:
 	set_hp(1000)
+	connect_attack_colliders()
+
+
+# Have collisions from all attack colliders connect to a single function
+func connect_attack_colliders():
+	for attack_collider in $"Attack Colliders".get_children():
+		if attack_collider is Area2D:
+			attack_collider.body_entered.connect(_on_attack_connecting)
+
+
+# damages any enemy inside attack colliders when player is mid attack
+func _on_attack_connecting(body : Node2D):
+	if body.has_method('enemy'):
+		body.take_damage(attack_damage)
 
 
 # empty function used by enemies to locate the player
@@ -135,6 +152,11 @@ func set_hp(amount:int):
 	
 	player_sprite.scale = Vector2(target_scale, target_scale)
 	player_hitbox.scale = Vector2(target_scale, target_scale)
+	attack_collider_parent.scale = Vector2(target_scale, target_scale)
+
+
+func increase_hp(amount:int):
+	set_hp(hp + amount)
 
 
 func resources():
