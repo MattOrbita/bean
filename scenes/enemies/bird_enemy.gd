@@ -30,8 +30,12 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	if !targets.is_empty() and attack_cooldown:
-		attack()
+	if !targets.is_empty():
+		$AnimatedSprite2D.play("attack")
+		if attack_cooldown:
+			attack()
+	else:
+		$AnimatedSprite2D.play("idle")
 
 func attack():
 	attack_cooldown = false
@@ -45,6 +49,7 @@ func take_damage(damage: int):
 		death()
 
 func death():
+	$AnimatedSprite2D.play("death")
 	player.increase_hp(value)
 	#notify wave manager (WIP)
 	self.queue_free() #deletion
@@ -54,6 +59,11 @@ func death():
 func _on_path_timer_timeout() -> void:
 	var target = player.global_position
 	var dir = (target - position).normalized()
+	print(dir.x)
+	if dir.x < 0.0:
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
 	velocity = dir * base_speed
 
 #keep track of what attackable targets are in range by storing them in an array
