@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://coan0jdlool7l"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_h3ig8"]
+[ext_resource type="Texture2D" uid="uid://cx4h5chy5qnll" path="res://Assets/battleback1_0.png" id="2_e2pky"]
+[ext_resource type="Theme" uid="uid://n668dsw5414c" path="res://Assets/updated_bean_theme.tres" id="3_q7s5k"]
+
+[sub_resource type="Theme" id="Theme_80gv5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aupa8"]
+bg_color = Color(1, 0.913725, 0.419608, 1)
+border_width_bottom = 10
+border_color = Color(0.145098, 0.388235, 0.698039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 10
+shadow_offset = Vector2(0, 10)
+
+[node name="OptsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h3ig8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e2pky")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CreditsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.852
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0960083
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_q7s5k")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.324
+anchor_top = 0.203
+anchor_right = 0.676
+anchor_bottom = 0.797
+offset_left = 0.252014
+offset_top = -0.0440063
+offset_right = -0.252075
+offset_bottom = 0.0439453
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_q7s5k")
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_80gv5")
+text = "Back to Game"
+
+[node name="BGMVolBox" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 2
+theme = ExtResource("3_q7s5k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aupa8")
+text = "Music Volume: 100%"
+horizontal_alignment = 1
+
+[node name="BGMVol" type="HSlider" parent="MarginContainer/VBoxContainer/BGMVolBox"]
+layout_mode = 2
+offset_top = 40.0
+offset_right = 682.0
+offset_bottom = 56.0
+theme = ExtResource("3_q7s5k")
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SFXVolBox" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 2
+theme = ExtResource("3_q7s5k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aupa8")
+text = "SFX Volume: 100%"
+horizontal_alignment = 1
+
+[node name="SFXVol" type="HSlider" parent="MarginContainer/VBoxContainer/SFXVolBox"]
+layout_mode = 2
+offset_top = 40.0
+offset_right = 677.0
+offset_bottom = 56.0
+theme = ExtResource("3_q7s5k")
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to Menu"
+
+[node name="ButtonPop" type="AudioStreamPlayer" parent="."]
+max_polyphony = 3
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/BGMVolBox/BGMVol" to="." method="_on_bgm_vol_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/SFXVolBox/SFXVol" to="." method="_on_sfx_vol_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SFXVolBox/SFXVol" to="." method="_on_sfx_vol_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

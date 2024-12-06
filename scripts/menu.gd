@@ -17,12 +17,12 @@ func _on_play_pressed():
 	
 
 func _on_options_pressed():
-	#get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
-	$MarginContainer/VBoxContainer/Options.text = "Will be fixed later!"
+	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
+	#$MarginContainer/VBoxContainer/Options.text = "Will be fixed later!"
 	
 
 func _on_tree_entered():
-	BgMusicManager.change_song("res://Assets/Jazz Theme (192 kbps).mp3")
+	BgMusicManager.change_song("res://Assets/Tyler, the Creator - Balloon (HQ Instrumental) (192 kbps).mp3")
 
 
 func _on_quit_pressed():

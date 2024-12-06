@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcugdgpmukqaa"]
+[gd_scene load_steps=4 format=3 uid="uid://dcugdgpmukqaa"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_ja0ej"]
 [ext_resource type="Texture2D" uid="uid://cx4h5chy5qnll" path="res://Assets/battleback1_0.png" id="1_mh586"]
-[ext_resource type="Theme" uid="uid://n668dsw5414c" path="res://Assets/fish_theme.tres" id="2_al1p2"]
-[ext_resource type="Theme" uid="uid://n668dsw5414c" path="res://assets/fish_theme.tres" id="3_3lol7"]
+[ext_resource type="Theme" uid="uid://n668dsw5414c" path="res://Assets/updated_bean_theme.tres" id="2_al1p2"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -48,7 +47,7 @@ anchor_bottom = 1.0
 offset_top = -0.0960083
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("3_3lol7")
+theme = ExtResource("2_al1p2")
 theme_override_font_sizes/font_size = 43
 text = "Disclaimer.  Some of these songs may be copyrighted."
 horizontal_alignment = 1
@@ -76,6 +75,7 @@ alignment = 1
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_al1p2")
 text = "Play"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]

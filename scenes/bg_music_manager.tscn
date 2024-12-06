@@ -8,6 +8,7 @@ script = ExtResource("1_adi7m")
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_8p0pf")
+bus = &"BGM"
 
 [node name="SongTimer" type="Timer" parent="BGM"]
 
