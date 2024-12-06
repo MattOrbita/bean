@@ -11,6 +11,7 @@ var damage: int
 var targets: Array
 var attack_cooldown: bool
 var player: Node2D
+var dead: bool
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
@@ -27,14 +28,24 @@ func _ready() -> void:
 	damage = int(base_damage * (1 + (wave_num/3)))
 	targets = []
 	attack_cooldown = true
+	dead = false
 	makepath()
 
 func _physics_process(_delta: float) -> void:
-	var dir =to_local(nav_agent.get_next_path_position()).normalized()
-	velocity = dir * base_speed
-	move_and_slide()
-	if !targets.is_empty() and attack_cooldown:
-		attack()
+	if !dead:
+		var dir =to_local(nav_agent.get_next_path_position()).normalized()
+		velocity = dir * base_speed
+		move_and_slide()
+		if !targets.is_empty():
+			$AnimatedSprite2D.play("attack")
+			if attack_cooldown:
+				attack()
+		else:
+			$AnimatedSprite2D.play("idle")
+			if dir.x < 0.0:
+				$AnimatedSprite2D.flip_h = false
+			else:
+				$AnimatedSprite2D.flip_h = true
 
 func attack():
 	attack_cooldown = false
@@ -49,8 +60,9 @@ func take_damage(damage: int):
 
 func death():
 	player.increase_hp(value)
-	#notify wave manager (WIP)
-	self.queue_free() #deletion
+	$AnimatedSprite2D.play("death")
+	dead = true
+	$DeathTimer.start()
 
 func makepath() -> void:
 	nav_agent.target_position = player.global_position
@@ -74,3 +86,6 @@ func _on_attack_area_body_shape_exited(body_rid: RID, body: Node2D, body_shape_i
 func _on_attack_cooldown_timeout() -> void:
 	#print("attack cd")
 	attack_cooldown = true
+	
+func _on_death_timer_timeout() -> void:
+	self.queue_free() #deletion

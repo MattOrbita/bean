@@ -675,9 +675,6 @@ position = Vector2(850, -650)
 [node name="spawn_point8" type="Marker2D" parent="Wave Manager/spawn_points"]
 position = Vector2(-850, -650)
 
-[node name="BirdEnemy" parent="Wave Manager" instance=ExtResource("4_0ex47")]
-position = Vector2(-296, 110)
-
 [node name="Tiles" type="Node" parent="."]
 
 [node name="nav" type="TileMapLayer" parent="Tiles"]
