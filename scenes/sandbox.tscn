@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dtwpo1i4et0sj"]
+[gd_scene load_steps=28 format=4 uid="uid://ddyjc1ty3pc7h"]
 
 [ext_resource type="Texture2D" uid="uid://b3o5gwupeup0r" path="res://Assets/walls_sheet.png" id="1_nwhhx"]
 [ext_resource type="Script" path="res://scenes/sandbox.gd" id="1_nysn3"]
@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://scenes/nav.gd" id="5_b415m"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
 [ext_resource type="PackedScene" uid="uid://bo656nj2xs2l3" path="res://scenes/tower_selector.tscn" id="7_6dxxn"]
-[ext_resource type="PackedScene" path="res://scenes/proximity_checker.tscn" id="10_b6rm4"]
 [ext_resource type="Texture2D" uid="uid://cfr5s1x0u64s4" path="res://Assets/TerrainSheet.png" id="9_em42k"]
+[ext_resource type="PackedScene" uid="uid://dgydqxqxrn7wf" path="res://scenes/proximity_checker.tscn" id="10_b6rm4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bobvr"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -589,6 +589,7 @@ texture = ExtResource("1_nwhhx")
 17:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 17:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_e2r70")
 17:11/1 = 1
+17:11/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 17:11/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_rkdgf")
 18:11/0 = 0
 18:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_unhdk")
@@ -695,6 +696,7 @@ navigation_enabled = false
 
 [node name="Walls and Towers" type="TileMapLayer" parent="Tiles" node_paths=PackedStringArray("navlayer")]
 scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("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")
 tile_set = SubResource("TileSet_vq3wm")
 navigation_enabled = false
 script = ExtResource("3_abshe")
