@@ -2,8 +2,6 @@ extends CharacterBody2D
 var direction : Vector2 = Vector2.ZERO
 var swing : bool = false
 var speed = 300
-@onready var animation_tree: AnimationTree = $AnimationTree
-@onready var animation_mode = animation_tree.get("parameters/playback")
 var destination : Vector2
 var movement : Vector2
 var moving = false
@@ -25,6 +23,8 @@ var size_step = 0.001
 @onready var player_sprite : Node2D = $Sprite
 @onready var player_hitbox : Node2D = $"Detected Player"
 @onready var attack_collider_parent : Node2D = $"Attack Colliders"
+
+@onready var animated_sprite : AnimatedSprite2D = $Sprite/AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -94,25 +94,18 @@ func _physics_process(_delta: float) -> void:
 		moving = false
 		direction.normalized()
 		velocity = direction * speed
-		set_walking(true)
-		update_blend_position()
+		animated_sprite.play('Walk')
 		move_and_slide()
 	elif moving == true and position.distance_to(destination) > 10:
 		movement = position.direction_to(destination)
 		movement.normalized()
 		direction = movement * speed
 		velocity = movement * speed
-		set_walking(true)
-		update_blend_position()
+		animated_sprite.play('Walk')
 		move_and_slide()
 	else:
 		moving = false
-		if attack and stop:
-		
-			get_attack(attack)
-		else:
-			set_walking(false)
-			set_idle(true)
+		animated_sprite.play('Idle')
 			
 		
 
@@ -121,26 +114,6 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	$Label.text = str(hp)
-
-func set_walking(value):
-	animation_tree["parameters/conditions/Walk"] = value
-	animation_tree["parameters/conditions/Idle"] = not value
-	animation_tree["parameters/conditions/Attack"] = not value
-
-func set_idle(value):
-	animation_tree["parameters/conditions/Walk"] = not value
-	animation_tree["parameters/conditions/Idle"] = value
-	animation_tree["parameters/conditions/Attack"] = not value
-	
-func get_attack(value):
-	animation_tree["parameters/conditions/Walk"] = not value
-	animation_tree["parameters/conditions/Idle"] = not value
-	animation_tree["parameters/conditions/Attack"] = value
-	
-func update_blend_position():
-	animation_tree["parameters/Idle/blend_position"] = direction.normalized()
-	animation_tree["parameters/Walk/blend_position"] = direction.normalized() 
-	animation_tree["parameters/Attack/blend_position"] = direction.normalized() 
 
 
 # new functions below
