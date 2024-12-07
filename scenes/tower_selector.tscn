@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://sx8538ks2cum"]
 
-[ext_resource type="ButtonGroup" uid="uid://ce6knvnllsxh8" path="res://misc/tower_button_group.tres" id="1_dfskg"]
+[ext_resource type="ButtonGroup" path="res://misc/tower_button_group.tres" id="1_dfskg"]
 [ext_resource type="Script" path="res://scripts/tower_selector.gd" id="1_dgbha"]
 [ext_resource type="Theme" uid="uid://c6y2jbpy6m03p" path="res://misc/new_button_theme.tres" id="2_7yai5"]
-[ext_resource type="ButtonGroup" uid="uid://dyx645rtgjhb7" path="res://misc/wall_button_group.tres" id="4_q75wr"]
+[ext_resource type="ButtonGroup" path="res://misc/wall_button_group.tres" id="4_q75wr"]
 
 [node name="Tower Selector" type="CanvasLayer"]
 script = ExtResource("1_dgbha")

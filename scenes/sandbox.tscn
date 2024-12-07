@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bgv32tfo0r8dc" path="res://Assets/nav.png" id="4_h6xoi"]
 [ext_resource type="Script" path="res://scenes/nav.gd" id="5_b415m"]
 [ext_resource type="PackedScene" uid="uid://3c7dge6tq2x0" path="res://scenes/game_manager.tscn" id="5_lagr5"]
-[ext_resource type="PackedScene" uid="uid://bo656nj2xs2l3" path="res://scenes/tower_selector.tscn" id="7_6dxxn"]
+[ext_resource type="PackedScene" uid="uid://sx8538ks2cum" path="res://scenes/tower_selector.tscn" id="7_6dxxn"]
 [ext_resource type="Texture2D" uid="uid://cfr5s1x0u64s4" path="res://Assets/TerrainSheet.png" id="9_em42k"]
 [ext_resource type="PackedScene" uid="uid://dgydqxqxrn7wf" path="res://scenes/proximity_checker.tscn" id="10_b6rm4"]
 
