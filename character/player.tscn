@@ -249,7 +249,7 @@ shape = SubResource("CapsuleShape2D_pg6l7")
 scale = Vector2(2.29, 2.29)
 sprite_frames = SubResource("SpriteFrames_vnlbi")
 animation = &"Walk"
-frame_progress = 0.169268
+frame_progress = 0.79728
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
