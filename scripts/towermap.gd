@@ -12,11 +12,7 @@ const big_wall_cost:int = 100
 signal resources_changed(resources)
 @export var navlayer: Node2D
 
-var place_proximity = 220
 var game_manager
-
-var shooter_tower : PackedScene = preload("res://scenes/towers/air_control_tower.tscn")
-var food_tower : PackedScene = preload("res://scenes/towers/feeding_tower.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -167,6 +163,3 @@ func set_resources(amount):
 	
 func resources_left():
 	return resources
-
-func update_selected_tower(button : Button):
-	pass

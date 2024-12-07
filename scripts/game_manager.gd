@@ -7,6 +7,7 @@ var enemies = []
 var walls_and_towers : TileMapLayer
 var tower_selector : CanvasLayer
 var proximity_checker : Node2D
+var is_selector_open : bool = false
 
 var player_script : Script = preload("res://character/player.gd")
 var enemy_script : Script = preload("res://scenes/enemy_placeholder.gd")
@@ -74,8 +75,5 @@ func update_enemy_list():
 
 # upon selecting a different tower in the UI, that action passes from the UI to the game manager,
 # and then from the game manager to the walls and towers tile map
-#func update_selected_tower(selected_tower : PackedScene):
-	#walls_and_towers.BIGGER_WALL_SCENE = selected_tower
-
-func update_selected_tower(button : Button):
-	walls_and_towers.update_selected_tower(button)
+func update_selected_tower(selected_tower : PackedScene):
+	walls_and_towers.BIGGER_WALL_SCENE = selected_tower
